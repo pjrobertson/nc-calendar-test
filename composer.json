@@ -1,0 +1,42 @@
+{
+    "config": {
+        "platform": {
+            "php": "7.4"
+        },
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "classmap-authoritative": true,
+        "autoloader-suffix": "Calendar",
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "OCA\\Calendar\\": "lib/"
+        }
+    },
+    "require": {
+        "php": ">=7.4 <=8.2",
+        "bamarni/composer-bin-plugin": "^1.8"
+    },
+    "scripts": {
+        "cs:fix": "php-cs-fixer fix",
+        "cs:check": "php-cs-fixer fix --dry-run --diff",
+        "lint": "find . -name \\*.php -not -path './vendor/*' -not -path './tests/*' -print0 | xargs -0 -n1 php -l",
+        "test": "phpunit --configuration phpunit.unit.xml --fail-on-warning",
+        "test:dev": "phpunit --configuration phpunit.unit.xml --fail-on-warning --stop-on-error --stop-on-failure",
+        "post-install-cmd": [
+            "@composer bin all install --ansi"
+        ],
+        "post-update-cmd": [
+            "@composer bin all update --ansi"
+        ]
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": false
+        }
+    }
+}
