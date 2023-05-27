@@ -187,6 +187,14 @@ class BookingControllerTest extends TestCase {
 		$this->controller->getBookableSlots($apptConfg->getId(), $start, 'Europe/Berlin');
 	}
 
+	public function testBookOffsetTimeSlot(): void {
+		$apptConfg = new AppointmentConfig();
+		$apptConfg->setId(1);
+		$apptConfg->setTimeSlot(30);
+		$apptConfg->setAvailability(json_decode('{"timezoneId":"Asia\/Shanghai","slots":{"MO":[{"start":1685149200,"end":1685160000},{"start":1685169000,"end":1685178000}],"TU":[],"WE":[],"TH":[],"FR":[],"SA":[],"SU":[]}}', true));
+		asdf;
+	}
+
 	public function testBook(): void {
 		$email = 'penny@stardewvalley.edu';
 		$config = new AppointmentConfig();
@@ -205,7 +213,6 @@ class BookingControllerTest extends TestCase {
 
 		$this->controller->bookSlot(1, 1, 1, 'Test', $email, 'Test', 'Hook/Neverland');
 	}
-
 
 	public function testBookInvalidTimeZone(): void {
 		$email = 'penny@stardewvalley.edu';
@@ -298,4 +305,5 @@ class BookingControllerTest extends TestCase {
 
 		$this->controller->bookSlot(1, 1, 1, 'Test', $email, 'Test', 'Europe/Berlin');
 	}
+
 }
